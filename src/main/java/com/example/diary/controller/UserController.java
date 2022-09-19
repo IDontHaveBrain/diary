@@ -4,6 +4,7 @@ import com.example.diary.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class UserController {
@@ -11,13 +12,8 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("/login")
+    @ResponseBody
     public String login(String email, String pw) {
-        if (userService.login(email, pw)) {
-            System.out.println("로그인 성공");
-            return "redirect:/";
-        } else {
-            System.out.println("로그인 실패");
-            return "redirect:/login";
-        }
+        return userService.login("jonamjun.dev@gmail.com", "123123") ? "success" : "fail";
     }
 }
