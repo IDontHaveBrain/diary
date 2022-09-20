@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
     <script src="/bootstrap/js/bootstrap.min.js"></script>
     <script src="/jquery-3.6.1.min.js"></script>
+    <script src="/kakao.min.js"></script>
 </head>
 <body>
 <script>
@@ -46,10 +47,41 @@
                             <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
                         </fieldset>
                     </form>
+                    <a id="kakao-login-btn"></a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    Kakao.init('7e2f292c5fbb336c5e603ce53a8a4007')
+    Kakao.isInitialized();
+
+    console.log("asd : ", Kakao.isInitialized());
+
+    Kakao.access
+
+    Kakao.Auth.createLoginButton({
+        container: '#kakao-login-btn',
+        success: function(authObj) {
+            Kakao.API.request({
+                url: '/v2/user/me',
+                success: function(res) {
+                    alert(JSON.stringify(res))
+                },
+                fail: function(error) {
+                    alert(
+                        'login success, but failed to request user information: ' +
+                        JSON.stringify(error)
+                    )
+                },
+            })
+        },
+        fail: function(err) {
+            alert('failed to login: ' + JSON.stringify(err))
+        },
+    })
+</script>
 </body>
 </html>
