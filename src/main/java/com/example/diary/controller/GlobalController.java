@@ -19,7 +19,7 @@ public class GlobalController {
     public Asd test() {
 
         for(User user : globalService.getUserList()) {
-            System.out.println(user.getNick());
+            System.out.println(user.toString());
         }
 
         return globalService.getAsdList().get(0);

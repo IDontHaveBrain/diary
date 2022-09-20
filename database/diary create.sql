@@ -4,7 +4,7 @@ CREATE TABLE `User` (
 	`uid`	int	NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`email`	varchar(40)	NULL,
 	`pw`	varchar(12)	NULL,
-	`nick`	varchar(8)	NULL,
+	`nick`	varchar(15)	NULL,
 	`gender`	int	NULL,
 	`age`	int	NULL,
 	`regdate`	datetime	NULL

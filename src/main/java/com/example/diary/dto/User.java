@@ -1,8 +1,15 @@
 package com.example.diary.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.time.Instant;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 @Entity
 @Table(name = "user")
 public class User {
@@ -14,7 +21,7 @@ public class User {
     @Column(name = "email", length = 20)
     private String email;
 
-    @Column(name = "pw", length = 12)
+    @Column(name = "pw", length = 15)
     private String pw;
 
     @Column(name = "nick", length = 8)
