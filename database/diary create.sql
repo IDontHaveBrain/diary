@@ -3,8 +3,8 @@ DROP TABLE IF EXISTS `User`;
 CREATE TABLE `User` (
 	`uid`	int	NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`email`	varchar(40)	NULL,
-	`pw`	varchar(12)	NULL,
-	`nick`	varchar(15)	NULL,
+	`pw`	varchar(20)	NULL,
+	`nick`	varchar(20)	NULL,
 	`gender`	int	NULL,
 	`age`	int	NULL,
 	`regdate`	datetime	NULL
@@ -15,12 +15,12 @@ DROP TABLE IF EXISTS `Diary`;
 CREATE TABLE `Diary` (
 	`did`	int	NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`uid`	int	NOT NULL,
-	`title`	varchar(50)	NULL,
+	`title`	varchar(100)	NULL,
 	`content`	varchar(500)	NULL,
 	`postdate`	datetime	NULL,
 	`uptdate`	datetime	NULL,
 	`like`	int	NULL,
-	`tag`	varchar(20)	NULL,
+	`tag`	varchar(100)	NULL,
 	`state`	int	NULL
 );
 
@@ -31,7 +31,7 @@ CREATE TABLE `Reply` (
 	`did`	int	NOT NULL,
 	`uid`	int	NOT NULL,
 	`parentid`	int	NULL,
-	`content`	varchar(200)	NULL,
+	`content`	varchar(300)	NULL,
 	`postdate`	datetime	NULL,
 	`uptdate`	datetime	NULL
 );
@@ -49,8 +49,8 @@ CREATE TABLE `Notify` (
 	`nid`	int	NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`uid`	int	NOT NULL,
 	`type`	int	NULL,
-	`title`	varchar(30)	NULL,
-	`content`	varchar(100)	NULL,
+	`title`	varchar(100)	NULL,
+	`content`	varchar(300)	NULL,
 	`regdate`	datetime	NULL,
 	`condate`	datetime	NULL,
 	`check`	datetime	NULL
