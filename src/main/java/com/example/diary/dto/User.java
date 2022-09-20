@@ -5,6 +5,9 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.time.Instant;
 
 @AllArgsConstructor
@@ -18,13 +21,19 @@ public class User {
     @Column(name = "uid", nullable = false)
     private Integer id;
 
-    @Column(name = "email", length = 20)
+    @Email(message = "이메일 형식이 아닙니다.")
+    @NotBlank(message = "이메일을 입력해주세요.")
+    @Column(name = "email", length = 40)
     private String email;
 
-    @Column(name = "pw", length = 15)
+    @Size(min = 6, max = 12, message = "비밀번호는 6자 이상 12자 이하로 입력해주세요.")
+    @NotBlank(message = "비밀번호를 입력해주세요.")
+    @Column(name = "pw", length = 20)
     private String pw;
 
-    @Column(name = "nick", length = 8)
+    @Size(min = 2, max = 6, message = "닉네임은 2자 이상 6자 이하로 입력해주세요.")
+    @NotBlank(message = "닉네임을 입력해주세요.")
+    @Column(name = "nick", length = 20)
     private String nick;
 
     @Column(name = "gender")
