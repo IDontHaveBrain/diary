@@ -19,7 +19,6 @@ CREATE TABLE `Diary` (
 	`content`	varchar(500)	NULL,
 	`postdate`	datetime	NULL,
 	`uptdate`	datetime	NULL,
-	`like`	int	NULL,
 	`tag`	varchar(20)	NULL,
 	`state`	int	NULL
 );
