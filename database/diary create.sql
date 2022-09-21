@@ -90,3 +90,5 @@ ALTER TABLE `Notify` ADD CONSTRAINT `FK_User_TO_Notify_1` FOREIGN KEY (
 REFERENCES `User` (
 	`uid`
 );
+
+alter table 'User' modify regdate datetime default now();

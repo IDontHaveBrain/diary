@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
     <script src="/bootstrap/js/bootstrap.min.js"></script>
     <script src="/jquery-3.6.1.min.js"></script>
+    <script src="/kakao.min.js"></script>
 </head>
 <body>
 <script>
@@ -46,10 +47,50 @@
                             <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
                         </fieldset>
                     </form>
+                    <a id="kakao-login-btn"></a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    Kakao.init('7e2f292c5fbb336c5e603ce53a8a4007')
+    Kakao.isInitialized();
+
+    console.log("asd : ", Kakao.isInitialized());
+
+    Kakao.Auth.createLoginButton({
+        container: '#kakao-login-btn',
+        success: function(authObj) {
+            $.ajax({
+                url: "/kakaoLogin",
+                type: "post",
+                data: {
+                    token: Kakao.Auth.getAccessToken()
+                },
+                success: function (data) {
+                    Kakao.Auth.logout();
+                    console.log(data.result);
+                    if(data.result == "success") {
+                        alert('(카카오)로그인 되었습니다.');
+                        location.href = "/index";
+                    } else {
+                        alert('(카카오)로그인 실패');
+                    }
+                },
+                fail: function (err) {
+                    Kakao.Auth.logout();
+                    alert('(카카오) 로그인 실패 ' + err);
+                }
+            })
+        },
+        fail: function(err) {
+            Kakao.Auth.logout();
+            //alert('failed to login: ' + JSON.stringify(err))
+            alert('(카카오)로그인 실패' + err);
+        },
+    })
+</script>
 </body>
 </html>

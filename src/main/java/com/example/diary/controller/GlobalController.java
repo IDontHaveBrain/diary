@@ -5,7 +5,6 @@ import com.example.diary.dto.User;
 import com.example.diary.service.GlobalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -23,5 +22,10 @@ public class GlobalController {
         }
 
         return globalService.getAsdList().get(0);
+    }
+
+    @RequestMapping("/index")
+    public String index() {
+        return "index";
     }
 }

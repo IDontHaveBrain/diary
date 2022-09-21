@@ -1,15 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: SQI
+  Date: 2022-09-21
+  Time: 오후 1:13
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>Insert title here</title>
-    <
+    <title>Title</title>
 </head>
 <body>
-cheer up!!
-<h1>${msg[0].asdcol}</h1>
+<h1>로그인된 계정 정보</h1>
+<h3>${user.id}</h3>
+<h3>${user.nick}</h3>
+<h3>${user.email}</h3>
+
 </body>
 </html>

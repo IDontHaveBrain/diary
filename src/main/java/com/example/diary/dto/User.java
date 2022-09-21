@@ -1,8 +1,7 @@
 package com.example.diary.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -42,6 +41,7 @@ public class User {
     @Column(name = "age")
     private Integer age;
 
+    @CreationTimestamp
     @Column(name = "regdate")
     private Instant regdate;
 
