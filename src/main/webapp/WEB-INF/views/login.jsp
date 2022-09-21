@@ -60,26 +60,35 @@
 
     console.log("asd : ", Kakao.isInitialized());
 
-    Kakao.access
-
     Kakao.Auth.createLoginButton({
         container: '#kakao-login-btn',
         success: function(authObj) {
-            Kakao.API.request({
-                url: '/v2/user/me',
-                success: function(res) {
-                    alert(JSON.stringify(res))
+            $.ajax({
+                url: "/kakaoLogin",
+                type: "post",
+                data: {
+                    token: Kakao.Auth.getAccessToken()
                 },
-                fail: function(error) {
-                    alert(
-                        'login success, but failed to request user information: ' +
-                        JSON.stringify(error)
-                    )
+                success: function (data) {
+                    Kakao.Auth.logout();
+                    console.log(data.result);
+                    if(data.result == "success") {
+                        alert('(카카오)로그인 되었습니다.');
+                        location.href = "/index";
+                    } else {
+                        alert('(카카오)로그인 실패');
+                    }
                 },
+                fail: function (err) {
+                    Kakao.Auth.logout();
+                    alert('(카카오) 로그인 실패 ' + err);
+                }
             })
         },
         fail: function(err) {
-            alert('failed to login: ' + JSON.stringify(err))
+            Kakao.Auth.logout();
+            //alert('failed to login: ' + JSON.stringify(err))
+            alert('(카카오)로그인 실패' + err);
         },
     })
 </script>

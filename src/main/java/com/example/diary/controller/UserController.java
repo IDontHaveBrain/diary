@@ -3,19 +3,17 @@ package com.example.diary.controller;
 import com.example.diary.dto.User;
 import com.example.diary.service.GlobalService;
 import com.example.diary.service.UserService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Controller
 public class UserController {
@@ -39,9 +37,21 @@ public class UserController {
             session.setAttribute("user", check);
             session.setMaxInactiveInterval(60*20);
         }
-
         return "login";
     }
+
+    @RequestMapping("/kakaoLogin")
+    @ResponseBody
+    public Map kakaoLogin(Model model, @RequestParam String token, HttpSession session) {
+        System.out.println(token);
+        Map<String, Object> result = new HashMap<>();
+        if(userService.kakaoLogin(token, session))
+            result.put("result", "success");
+        else
+            result.put("result", "fail");
+        return result;
+    }
+
     @RequestMapping("/logout")
     public String logout(Model model, HttpSession session) {
         session.removeAttribute("user");
